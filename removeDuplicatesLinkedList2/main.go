@@ -35,15 +35,26 @@ func addNodes(vals []int) *ListNode {
 func deleteDuplicates(head *ListNode) *ListNode {
 	node := head
 	mapCheck := make(map[int]bool)
-	var previousNode *ListNode
 	for node != nil {
 		if _, ok := mapCheck[node.Val]; ok {
-			previousNode.Next = node.Next
-			node = node.Next
-			continue
+			mapCheck[node.Val] = false
+		} else {
+			mapCheck[node.Val] = true
 		}
-		mapCheck[node.Val] = true
-		previousNode = node
+		node = node.Next
+	}
+	var previousNode *ListNode
+	node = head
+	for node != nil {
+		if !mapCheck[node.Val] {
+			if head == node {
+				head = node.Next
+			} else {
+				previousNode.Next = node.Next
+			}
+		} else {
+			previousNode = node
+		}
 		node = node.Next
 	}
 	return head
