@@ -9,11 +9,7 @@ func topKFrequent(nums []int, k int) []int {
 	counterMap := make(map[int]int)
 
 	for _, v := range nums {
-		if _, ok := counterMap[v]; ok {
-			counterMap[v] += 1
-		} else {
-			counterMap[v] = 1
-		}
+		counterMap[v] += 1
 	}
 
 	freqArr := make([][]int, len(nums)+1)
