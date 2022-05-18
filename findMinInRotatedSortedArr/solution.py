@@ -3,17 +3,18 @@ from typing import List
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:        
-        if len(nums) == 2:
-          return min(nums[0], nums[1])
-        if len(nums) == 3:
-          return min(nums[0], nums[1], nums[2])
         mi = self.getMiddleIndex(len(nums))        
-        while nums[0] > nums[len(nums) - 1]:
+        while len(nums) > 2:
+          if self.isSorted(nums):
+            return nums[0]
           if nums[mi] >= nums[0]:
             nums = nums[mi + 1:]
           else:
-            nums = nums[:mi]
+            nums = nums[:mi + 1]
           mi = self.getMiddleIndex(len(nums))
+
+        if len(nums) == 2:
+          return min(nums[0], nums[1])
 
         return nums[0]
 
@@ -22,3 +23,5 @@ class Solution:
           return int (size / 2)
         else:
           return int((size - 1) / 2)
+    def isSorted(self, nums: List[int]) -> bool:      
+      return (len(nums) > 0) and (nums[0] <= nums[len(nums) - 1])

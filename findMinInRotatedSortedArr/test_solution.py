@@ -29,6 +29,10 @@ class TestSol(unittest.TestCase):
         sol = Solution()
         res = sol.findMin([2,3,4,5,1])
         self.assertEqual(res, 1, " [2,3,4,5,1] Should be 1")
+    def test_sol7(self):
+        sol = Solution()
+        res = sol.findMin([3,1,2])
+        self.assertEqual(res, 1, " [3,1,2] Should be 1")
 
 
 
